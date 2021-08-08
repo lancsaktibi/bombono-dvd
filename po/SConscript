@@ -35,7 +35,7 @@ def po_builder(target,source,env):
              str(source[0]),
              str(source[1]),
            ]
-    print 'Updating ' + trgt
+    print ('Updating ' + trgt)
     return os.spawnvp(os.P_WAIT, 'msgmerge', args)
 
 po_bld = Builder (action = po_builder)

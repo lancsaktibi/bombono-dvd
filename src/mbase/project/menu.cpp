@@ -166,7 +166,9 @@ void MenuMD::SerializeImpl(Archieve& ar)
 static std::string MakeObjectPath(int idx, const char* type)
 {
     ASSERT( idx != NO_HNDL );
-    return (str::stream() << type << "." << idx).str();
+    str::stream strm;
+    strm << type << "." << idx;
+    return strm.str();
 }
 
 std::string GetMediaRef(MediaItem mi)
@@ -197,7 +199,10 @@ class RefMaker: public ObjVisitor
 void RefMaker::Visit(VideoChapterMD& obj)
 {
     refStr  = GetMediaRef(obj.owner);
-    refStr += (str::stream() << "." << ChapterPosInt(&obj)).str();
+
+    str::stream strm;
+    strm << "." << ChapterPosInt(&obj);
+    refStr += strm.str();
 }
 
 std::string Media2Ref(MediaItem mi)
@@ -233,8 +238,9 @@ int GetRefIndex(const char*& str)
 
 std::string ThrowBadIndex(const char* prefix, int idx)
 {
-    throw std::runtime_error(
-        (str::stream() << prefix << idx).str() );
+    str::stream strm;
+    strm << prefix << idx;
+    throw std::runtime_error(strm.str());        
 }
 
 MediaItem TryGetMedia(int idx)

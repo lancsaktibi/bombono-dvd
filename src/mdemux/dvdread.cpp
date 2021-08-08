@@ -35,8 +35,11 @@ namespace DVD {
 std::string VobFName(VobPos& pos, const std::string& suffix)
 {
     using Mpeg::set_hms;
-    return (str::stream("Video") << set_hms() << int(pos.Vts()) 
-            << "-" << set_hms() << pos.VobId() << suffix << ".vob").str();
+
+    str::stream strm("Video");
+    strm << set_hms() << int(pos.Vts()) 
+            << "-" << set_hms() << pos.VobId() << suffix << ".vob";
+    return strm.str();
 }
 
 typedef boost::function<void(int, double)> VobTimeFnr;
@@ -282,9 +285,12 @@ VobPtr FindVob(VobArr& dvd_vobs, uint8_t vts, uint16_t vob_id)
 static void TryDVDReadBlocks(dvd_file_t* file, int off, size_t cnt, char* buf)
 {
     int real_cnt = DVDReadBlocks(file, off, cnt, (unsigned char*)buf);
-    if( (int)cnt != real_cnt )
-        throw std::runtime_error( (str::stream() << real_cnt << 
-                                   " != DVDReadBlocks(" << cnt << ")").str() );
+    if( (int)cnt != real_cnt ) 
+    {
+        str::stream strm;
+        strm << real_cnt << " != DVDReadBlocks(" << cnt << ")";
+        throw std::runtime_error(strm.str());
+    }        
 }
 
 // размер буфера должен соответствовать читаемому диапазону

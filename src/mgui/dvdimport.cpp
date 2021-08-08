@@ -43,6 +43,8 @@
 #include <gtk/gtkversion.h>
 #include <iomanip>
 
+#include <gtk/gtkcontainer.h>
+
 namespace DVD {
 
 struct VobFields
@@ -69,7 +71,7 @@ static VobFields& VF()
 ImportData::ImportData(): srcChooser(Gtk::FILE_CHOOSER_ACTION_OPEN), 
     curPage(ipNONE_PAGE), isBreak(false), addToProject(false),
     // value, lower, upper, step_increment = 1, page_increment = 10, page_size = 0
-    previewAdj(0., 0., 0.)
+    previewAdj(0.0, 0.0, 0.0)
 {
     RGBOpen(thumbPlyr);
     RGBOpen(previewPlyr);
@@ -211,10 +213,14 @@ static void OnPreparePage(ImportData& id)
                 row[VF().selState]  = false;
                 row[VF().name]      = VobFName(vob.pos);
                 row[VF().thumbnail] = vob.aspect == af4_3 ? pix4_3 : pix16_9;
-                std::string desc = (str::stream(Mpeg::SecToHMS(vob.tmLen, true)) <<  ", "
-                                    << vob.sz.x << "x" << vob.sz.y << ", "
-                                    << (vob.aspect == af4_3 ? "4:3" : "16:9") << ", " 
-                                    << std::fixed << std::setprecision(2) << vob.Count()/512. << " " << _("MB")).str();
+                               
+                str::stream ss;
+                ss << Mpeg::SecToHMS(vob.tmLen, true) <<  ", "
+                    << vob.sz.x << "x" << vob.sz.y << ", "
+                    << (vob.aspect == af4_3 ? "4:3" : "16:9") << ", " 
+                    << std::fixed << std::setprecision(2) << vob.Count()/512. << " " << _("MB");
+                std::string desc = ss.str();
+
                 row[VF().desc]      = desc;
             }
             CompleteSelection(id, false);
@@ -288,7 +294,7 @@ static void OnSelectSource(ImportData& id)
     // :TODO: порой тупит и выдает "" (файл не выделен якобы)
     // Из-за этого errLbl может скрываться когда не надо
     Gtk::FileChooserWidget& fcw = id.srcChooser;
-    std::string dvd_path = fcw.get_filename().raw();
+    std::string dvd_path = fcw.get_filename();
 
     OpenDVD(dvd_path, id);
 }
@@ -363,7 +369,7 @@ static void OnVobActivate(const Gtk::TreePath& pth, ImportData& id)
 
 static void OnSelectDest(Gtk::FileChooserWidget& fcw, ImportData& id)
 {
-    id.destPath = fcw.get_filename().raw();
+    id.destPath = fcw.get_filename();
     SetCurPageComplete(id.ast, fs::is_directory(id.destPath));
 }
 
@@ -542,7 +548,7 @@ static void SetExpandFill(Gtk::Widget& child)
 {
     GtkWidget* child_wdg = (GtkWidget*)child.gobj();
     GtkWidget* box_ = gtk_widget_get_parent(child_wdg);
-    if( box_ && GTK_IS_BOX(box_) )
+    if( box_&& GTK_IS_BOX(box_))
     {
         GtkContainer* cont = (GtkContainer*)box_;
         gtk_container_child_set(cont, child_wdg, "expand", TRUE,  NULL);

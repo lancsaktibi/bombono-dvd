@@ -1,0 +1,58 @@
+# Options for building Atom project
+BUILD_CFG = 'release'
+BUILD_DIR = 'build'
+BUILD_BRIEF = False
+BUILD_QUICK = 'auto'
+TEST = False
+PREFIX = '/usr/local'
+DESTDIR = ''
+
+# Compiler information
+CC = 'gcc'
+CXX = 'g++'
+CPPFLAGS = ''
+CFLAGS = ''
+CXXFLAGS = ''
+LDFLAGS = ''
+
+# Boost library
+USE_EXT_BOOST = True
+BOOST_INCLUDE = ''
+BOOST_LIBPATH = ''
+
+# libdvdread library
+DVDREAD_INCLUDE = ''
+DVDREAD_LIBPATH = ''
+
+### Calculated data ###
+
+IS_GCC = 1
+IS_CLANG = 0
+
+# Configuration
+CONFIGURATION = {'ARCH_X86': {'is_on': 0, 'val': None, 'comment': 'x86 architecture'}, 'ARCH_PPC': {'is_on': 0, 'val': None, 'comment': 'ppc architecture'}, 'ARCH_SPARC': {'is_on': 0, 'val': None, 'comment': 'sparc architecture'}, 'ARCH_ALPHA': {'is_on': 0, 'val': None, 'comment': 'alpha architecture'}, 'HAVE_ALTIVEC_H': {'is_on': 0, 'val': '1', 'ccomment': 'altivec.h'}, 'HAVE_SYS_TYPES_H': {'is_on': True, 'val': '1', 'ccomment': 'sys/types.h'}, 'HAVE_SYS_STAT_H': {'is_on': True, 'val': '1', 'ccomment': 'sys/stat.h'}, 'HAVE_STDLIB_H': {'is_on': True, 'val': '1', 'ccomment': 'stdlib.h'}, 'HAVE_STRING_H': {'is_on': True, 'val': '1', 'ccomment': 'string.h'}, 'HAVE_MEMORY_H': {'is_on': True, 'val': '1', 'ccomment': 'memory.h'}, 'HAVE_STRINGS_H': {'is_on': True, 'val': '1', 'ccomment': 'strings.h'}, 'HAVE_INTTYPES_H': {'is_on': True, 'val': '1', 'ccomment': 'inttypes.h'}, 'HAVE_STDINT_H': {'is_on': True, 'val': '1', 'ccomment': 'stdint.h'}, 'HAVE_UNISTD_H': {'is_on': True, 'val': '1', 'ccomment': 'unistd.h'}, 'HAVE_DLFCN_H': {'is_on': True, 'val': '1', 'ccomment': 'dlfcn.h'}, 'HAVE_SYS_TIMEB_H': {'is_on': True, 'val': '1', 'ccomment': 'sys/timeb.h'}, 'HAVE_SYS_TIME_H': {'is_on': True, 'val': '1', 'ccomment': 'sys/time.h'}, 'HAVE_TIME_H': {'is_on': True, 'val': '1', 'ccomment': 'time.h'}, 'HAVE_IO_H': {'is_on': False, 'val': '1', 'ccomment': 'io.h'}, 'HAVE_STRUCT_TIMEVAL': {'is_on': 1, 'val': '1', 'ocomment': "type `struct timeval'"}, 'HAVE_FTIME': {'is_on': True, 'val': '1', 'ocomment': "`ftime' function"}, 'HAVE_GETTIMEOFDAY': {'is_on': True, 'val': '1', 'ocomment': "`gettimeofday' function"}, 'ATTRIBUTE_ALIGNED_MAX': {'is_on': False, 'val': 0, 'comment': 'maximum supported data alignment'}, 'HAVE_BUILTIN_EXPECT': {'is_on': 1, 'ocomment': "`__builtin_expect' function"}, 'RETSIGTYPE': {'is_on': 1, 'val': 'void', 'comment': "Define as the return type of signal handlers (`int' or `void')."}, 'WORDS_BIGENDIAN': {'is_on': False, 'val': 1, 'comment': 'Define to 1 if your processor stores words with the most significant byte\n   first (like Motorola and SPARC, unlike Intel and VAX).'}, 'inline': {'text': '#ifndef __cplusplus\n#undef inline\n#endif', 'comment': "Define to `__inline__' or `__inline' if that's what the C compiler\n   calls it, or to nothing if 'inline' is not supported under any name."}, 'restrict': {'is_on': 1, 'val': 'restrict', 'comment': "Define as `__restrict' if that's what the C compiler calls it, or to\n   nothing if it is not supported."}}
+
+# glibmm-2.4 library information
+glibmm_minus2_dot4_dict = {'CPPPATH': ['/usr/include/glibmm-2.4', '/usr/lib/x86_64-linux-gnu/glibmm-2.4/include', '/usr/include/glib-2.0', '/usr/lib/x86_64-linux-gnu/glib-2.0/include', '/usr/include/sigc++-2.0', '/usr/lib/x86_64-linux-gnu/sigc++-2.0/include'], 'LIBS': ['glibmm-2.4', 'gobject-2.0', 'glib-2.0', 'sigc-2.0']}
+
+# libxml++-2.6 library information
+libxml_plus_plus_minus2_dot6_dict = {'CPPPATH': ['/usr/include/libxml++-2.6', '/usr/lib/x86_64-linux-gnu/libxml++-2.6/include', '/usr/include/libxml2', '/usr/include/glibmm-2.4', '/usr/lib/x86_64-linux-gnu/glibmm-2.4/include', '/usr/include/glib-2.0', '/usr/lib/x86_64-linux-gnu/glib-2.0/include', '/usr/include/sigc++-2.0', '/usr/lib/x86_64-linux-gnu/sigc++-2.0/include'], 'LIBS': ['xml++-2.6', 'xml2', 'glibmm-2.4', 'gobject-2.0', 'glib-2.0', 'sigc-2.0']}
+
+# gtkmm-2.4 library information
+gtkmm_minus2_dot4_dict = {'CPPPATH': ['/usr/include/gtkmm-2.4', '/usr/lib/x86_64-linux-gnu/gtkmm-2.4/include', '/usr/include/atkmm-1.6', '/usr/include/gtk-unix-print-2.0', '/usr/include/gtk-2.0', '/usr/include/gdkmm-2.4', '/usr/lib/x86_64-linux-gnu/gdkmm-2.4/include', '/usr/include/giomm-2.4', '/usr/lib/x86_64-linux-gnu/giomm-2.4/include', '/usr/include/pangomm-1.4', '/usr/lib/x86_64-linux-gnu/pangomm-1.4/include', '/usr/include/glibmm-2.4', '/usr/lib/x86_64-linux-gnu/glibmm-2.4/include', '/usr/include/cairomm-1.0', '/usr/lib/x86_64-linux-gnu/cairomm-1.0/include', '/usr/include/sigc++-2.0', '/usr/lib/x86_64-linux-gnu/sigc++-2.0/include', '/usr/lib/x86_64-linux-gnu/gtk-2.0/include', '/usr/include/pango-1.0', '/usr/include/atk-1.0', '/usr/include/gdk-pixbuf-2.0', '/usr/include/libpng16', '/usr/include/x86_64-linux-gnu', '/usr/include/harfbuzz', '/usr/include/libmount', '/usr/include/blkid', '/usr/include/fribidi', '/usr/include/cairo', '/usr/include/pixman-1', '/usr/include/glib-2.0', '/usr/lib/x86_64-linux-gnu/glib-2.0/include', '/usr/include/uuid', '/usr/include/freetype2'], 'LIBS': ['gtkmm-2.4', 'atkmm-1.6', 'gdkmm-2.4', 'giomm-2.4', 'pangomm-1.4', 'glibmm-2.4', 'cairomm-1.0', 'sigc-2.0', 'gtk-x11-2.0', 'gdk-x11-2.0', 'pangocairo-1.0', 'atk-1.0', 'cairo', 'gdk_pixbuf-2.0', 'gio-2.0', 'pangoft2-1.0', 'pango-1.0', 'gobject-2.0', 'glib-2.0', 'harfbuzz', 'fontconfig', 'freetype']}
+
+# libavformat library information
+libavformat_dict = {'CPPPATH': ['/usr/include/x86_64-linux-gnu'], 'LIBS': ['avformat']}
+
+# libavcodec library information
+libavcodec_dict = {'CPPPATH': ['/usr/include/x86_64-linux-gnu'], 'LIBS': ['avcodec']}
+
+# libswscale library information
+libswscale_dict = {'CPPPATH': ['/usr/include/x86_64-linux-gnu'], 'LIBS': ['swscale']}
+
+# libavutil library information
+libavutil_dict = {'CPPPATH': ['/usr/include/x86_64-linux-gnu'], 'LIBS': ['avutil']}
+
+# Undocumented
+TEST_BUILD = False
+USE_EXT_ASL = False

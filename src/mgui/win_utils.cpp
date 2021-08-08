@@ -132,7 +132,9 @@ void Scale(RefPtr<Context> cr, RefPtr<ImageSurface> src,
 
 std::string ColorToString(const unsigned int rgba)
 {
-    return (str::stream() << std::hex << (rgba >> 8)).str();
+    str::stream strm;
+    strm << std::hex << (rgba >> 8);
+    return strm.str();
 }
 
 CR::Color GetBGColor(Gtk::Widget& wdg)

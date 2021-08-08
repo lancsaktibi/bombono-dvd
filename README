@@ -34,20 +34,29 @@ Design:
 Installation Instructions
 =========================
 
+dependency list: /SConstruct/RequiredLibs
+
+lib upgrade (dev):
+libgtk 2 -- remove libgtkmm 2.4
+libgtk 3 -- manually add libgtkmm 3.0
+libgtk 4 -- libgtkmm not available
+
+
 I. Requirements:
- o gtk+           >= 2.8,- http://www.gtk.org/
- o gtkmm          >= 2.4,- http://www.gtkmm.org/
- o SCons          >= 0.96.1,- http://www.scons.org/
- o mjpegtools     >= 1.8.0,- http://mjpeg.sourceforge.net/
- o libdvdread     - http://www.dtek.chalmers.se/groups/dvd/
- o dvdauthor      - http://dvdauthor.sourceforge.net/
- o dvd+rw-tools   - http://fy.chalmers.se/~appro/linux/DVD+RW/
- o twolame        - http://www.twolame.org/
- o libxml++       - http://libxmlplusplus.sourceforge.net/
- o ffmpeg:        - http://www.ffmpeg.org/
+ o gtk+           >= 2.8,- http://www.gtk.org/ --- libgtk 2 (OK) | 3 | 4 (check) installed
+ o gtkmm          >= 2.4,- http://www.gtkmm.org/ --- libgtkmm 2.4  | 3 installed 
+ o SCons          >= 0.96.1,- http://www.scons.org/ --- python 3 | scons 4.2.0 installed 4.0.1
+ o mjpegtools     >= 1.8.0,- http://mjpeg.sourceforge.net/ --- mjpegtools 2.1.0 installed
+ o libdvdread     - http://www.dtek.chalmers.se/groups/dvd/ --- libdvdread 6.1.1 installed
+ o dvdauthor      - http://dvdauthor.sourceforge.net/ --- dvdauthor 0.7.2 installed
+ o dvd+rw-tools   - http://fy.chalmers.se/~appro/linux/DVD+RW/ --- dvd+rw-tools 7.1 installed
+ o twolame        - http://www.twolame.org/ --- twolame 0.4.0 installed
+ o libxml++       - http://libxmlplusplus.sourceforge.net/ --- libxml 2.40 installed
+ o ffmpeg:        - http://www.ffmpeg.org/ --- ffmpeg 4.3.2 installed 
    - libavformat, libswscale 
    - (runtime) ffmpeg converter
- o enca:          - http://gitorious.org/enca
+ o enca:          - http://gitorious.org/enca ---enca 1.19 installed  
+ o boost:         - http://www.boost.org/ --- libboost 1.74 installed 
 
 II. You need SCons to build Bombono DVD - maybe the best build tool ever. ;) 
 SCons is just make&autotools&libtool all together. Type:

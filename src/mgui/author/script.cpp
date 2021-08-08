@@ -130,7 +130,11 @@ static std::string MakeFPTarget(MediaItem mi)
     {
         VideoItem vi = IsVideo(mi);
         ASSERT( vi );
-        str = (str::stream() << "title " << GetAuthorNumber(vi)).str();
+        
+        str::stream strm;
+        strm << "title " << GetAuthorNumber(vi);
+        str = strm.str();
+
     }
     return str;
 }
@@ -179,7 +183,11 @@ void TargetCommandVis::Visit(VideoChapterMD& obj)
     // Потому: для удоства пользователей даем создавать нулевую главу, разрешая это здесь 
     // (однако доп. нулевые главы будут приводить к ошибке Cannot jump to chapter N ... only M exist)
     int c_num = ChapterPosInt(&obj) + (owner->List()[0]->chpTime ? 2 : 1) ;
-    res = (str::stream() << "jump title " << v_num << " chapter " << c_num << ";").str();
+    
+    str::stream strm;
+    strm << "jump title " << v_num << " chapter " << c_num << ";";
+    res = strm.str();
+
 }
 
 static std::string MakeButtonJump(MediaItem mi, bool vts_domain)
@@ -204,7 +212,10 @@ std::string MenuAuthorDir(Menu mn, int idx, bool cnv_from_utf8)
     if( !fs::native(name) )
         name = "Menu";
 
-    std::string fname = (str::stream() << idx+1 << "." << name).str();
+    str::stream strm;
+    strm << idx+1 << "." << name;
+    std::string fname = strm.str();  
+    
     return cnv_from_utf8 ? ConvertPathFromUtf8(fname) : fname ;
 }
 
@@ -626,7 +637,11 @@ static void CopyRootFile(const std::string& fname, const std::string& out_dir)
 void AuthorSectionInfo(const std::string& str)
 {
     Author::Info("\n#", false);
-    Author::Info((str::stream() << "# " << str).str(), false);
+    
+    str::stream strm;
+    strm << "# " << str;
+    Author::Info(strm.str(), false);
+    
     Author::Info("#\n", false);
 }
 
@@ -751,7 +766,7 @@ static void CalcTransPercent(double cur_dur, Job& job, JobData& jd, double full_
     }
     Author::SetStageProgress(per);
 }
-
+// AuthorSectionInfo((str::stream() << "Build DVD-Video in folder: " << out_dir).str());
 // ffmpeg выводит статистику первого создаваемого файла каждые полсекунды,
 // см. print_report() (при verbose=1, по умолчанию)
 // Формат размера: "size=%8.0fkB"
@@ -1082,13 +1097,16 @@ static void TranscodeVideos(int pass, const std::string& out_dir)
 
 static void AuthorImpl(const std::string& out_dir)
 {
-    AuthorSectionInfo((str::stream() << "Build DVD-Video in folder: " << out_dir).str());
+    str::stream strm;
+    strm << "Build DVD-Video in folder: " << out_dir;
+    AuthorSectionInfo(strm.str());
+    
     IteratePendingEvents();
 
     IndexVideosForAuthoring();
     Author::ExecState& es = Author::GetES();
 
-    // * транскодирование
+    // * транскодирование// AuthorSectionInfo((str::stream() << "Build DVD-Video in folder: " << out_dir).str());
     Author::SetStage(Author::stTRANSCODE);
     //io::pos trans_done = 0, trans_total = ProjectStat().transSum;
     //boost_foreach( VideoItem vi, AllTransVideos() )

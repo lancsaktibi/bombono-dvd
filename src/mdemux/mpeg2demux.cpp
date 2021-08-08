@@ -71,7 +71,9 @@ bool DemuxSvc::Filter(uint32_t code)
 
 static std::string MakePESKey(int id, const char* ext)
 {
-    return (str::stream() << id << "." << ext).str();
+    str::stream strm;
+    strm << id << "." << ext;
+    return strm.str();
 }
 
 static bool ReadPart(io::stream& strm, uint8_t* buf, int sz, int& len)
@@ -110,7 +112,10 @@ static std::string MakeKeyNameForLPCM(int track, uint8_t inf)
         ASSERT(0);
     }
 
-    std::string header_str = (str::stream() << sample_rate << ":" << channels << ":" << bps << ".lpcm").str();
+    str::stream strm;
+    strm << sample_rate << ":" << channels << ":" << bps << ".lpcm";
+    std::string header_str = strm.str();
+
     return MakePESKey(track, header_str.c_str());
 }
 

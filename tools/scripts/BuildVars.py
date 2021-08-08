@@ -31,9 +31,9 @@ UserOptDict = {}
 def PrintBright(is_end):
     if not is_end:
         print
-        print "****************************************************"
+        print ("****************************************************")
     else:
-        print "****************************************************"
+        print ("****************************************************")
         print
 
 def IsDebugCfg():
@@ -68,10 +68,10 @@ def IsBuildOrRunTests():
 def CheckSettings(main_env):
     global Cc, Cxx, BuildDir, Targets, RunTests, BuildTests
     if RunTests :
-        print 'Tests: on'
+        print ('Tests: on')
     else:
         if BuildTests:
-            print 'Tests: on (only building)'
+            print ('Tests: on (only building)')
 
     def_env = GetDefEnv()
     # for SCons =<0.96 we need to warn that just 'scons' is not enough:
@@ -92,9 +92,9 @@ def CheckSettings(main_env):
       ( (len(BuildDir) >= 1 and BuildDir[0] == '/') or (len(BuildDir) >= 2 and BuildDir[0:2] == '..') ) and \
       (Targets == [] or Targets == ['.']) :
         PrintBright(0)
-        print 'Warning! "scons" or "scons ." detected while BUILD_DIR is outside "."!'
-        print 'To build successfully with SCons <= v0.96.1 you may need to run something like '
-        print '\t"scons <...> ' + BuildDir + '".' 
+        print ('Warning! "scons" or "scons ." detected while BUILD_DIR is outside "."!')
+        print ('To build successfully with SCons <= v0.96.1 you may need to run something like ')
+        print ('\t"scons <...> ' + BuildDir + '".') 
         PrintBright(1)
 
     # we use TestSConscript() function instead of SConscript()
@@ -228,7 +228,7 @@ def SetBriefOutput(env):
 
 def ErrorAndExit(msg):
     PrintBright(0)
-    print msg
+    print (msg)
     PrintBright(1)
 
     GetDefEnv().Exit(1)
@@ -248,7 +248,7 @@ def ParseFlagsForCommand(cmd, add_defines = 0):
     tmp_dict = tmp_env.Dictionary()
 
     #res_dict = { 'CPPPATH' : tmp_dict['CPPPATH'],
-    #             'LIBPATH' : tmp_dict['LIBPATH'],
+    #             'LIBPATH' : tmp_dict['LIBPATH'],print(file=cfg_file)
     #             'LIBS'    : tmp_dict['LIBS']     }
     res_dict = {}
     keys_list = ['CPPPATH', 'LIBPATH', 'LIBS']
@@ -383,20 +383,20 @@ def AddComment(cfg_file, var):
         comment = MakeHeaderComment(var['ccomment'], var.get('val') == '1')
 
     if comment:
-        print >> cfg_file, "/* " + comment + " */"
+        print("/* " + comment + " */", file=cfg_file)
 
 def AddDefine(cfg_file, key, **var):
-    print >> cfg_file
+    print(file=cfg_file)
     AddComment(cfg_file, var)
 
     if var['is_on']:
         str = var.get('val', None)
         if str == None:
-            print >> cfg_file, "#define %s" % key
+            print("#define %s" % key, file=cfg_file)
         else:
-            print >> cfg_file, "#define %s %s" % (key, var['val'])
+            print("#define %s %s" % (key, var['val']), file=cfg_file)
     else:
-        print >> cfg_file, "/* #undef %s */" % key
+        print("/* #undef %s */" % key, file=cfg_file)
 
 GenFunctionMap = {}
 
@@ -495,7 +495,7 @@ def IsToBuildQuick():
             res = True
         elif not IsReenter(IsToBuildQuick):
             # warn once only
-            print 'BUILD_QUICK=true is not supported for current compiler(%s)!' % Cc
+            print ('BUILD_QUICK=true is not supported for current compiler(%s)!' % Cc)
 
     return res
 
@@ -504,7 +504,7 @@ def ExtendEnvVariable(env, name, add_name):
 
 def CreateEnvVersion2(**kw):
     tools = ['default', 'AuxTools']
-    if kw.has_key('tools'):
+    if 'tools' in kw:
         tools += kw['tools']
     kw['tools'] = tools
 

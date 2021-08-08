@@ -27,6 +27,9 @@
 std::string MakeSVGFilename(const char* prefix)
 {
     static int idx = 1;
-    return (str::stream() << prefix << "-" << Mpeg::set_hms() << idx++ << ".svg" ).str();
+    
+    str::stream strm;
+    strm << prefix << "-" << Mpeg::set_hms() << idx++ << ".svg";
+    return strm.str();
 }
 

@@ -88,6 +88,5 @@
 
 #include <libxml++/libxml++.h>
 
-
 #endif // __MBASE_PROJECT__EXTLIBS__H__
 

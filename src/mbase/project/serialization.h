@@ -75,7 +75,9 @@ namespace ToString
 template<typename T>
 std::string MakeString(const T& t)
 {
-    return (str::stream() << t).str();
+    str::stream strm;
+    strm << t;
+    return strm.str();
 }
 
 template<typename T>

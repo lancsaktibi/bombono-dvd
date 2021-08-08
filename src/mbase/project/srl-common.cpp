@@ -36,10 +36,13 @@ void Serialize(Archieve& ar, MenuParams& mp)
 std::string ToString(const RGBA::Pixel& pxl)
 {
     using Mpeg::set_hms;
-    return (str::stream("#") << std::hex 
+
+    str::stream strm("#");
+    strm << std::hex 
             << set_hms() << (int)pxl.red 
             << set_hms() << (int)pxl.green 
-            << set_hms() << (int)pxl.blue << (int)pxl.alpha).str();
+            << set_hms() << (int)pxl.blue << (int)pxl.alpha;
+    return strm.str();
 }
 
 // как pango_color_parse()

@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include/**",
+                "/usr/lib/x86_64-linux-gnu/**",
+                "/usr/include/glibmm-2.4/glibmm/**",
+                "/usr/include/libxml++-2.6/libxml++/**",
+                "/usr/include/gtkmm-2.4/**",
+                "/usr/include/gtk-2.0/gtk/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc-11",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}

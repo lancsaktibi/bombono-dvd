@@ -44,6 +44,5 @@
 //#include <gtkmm/dialog.h>
 //#include <gtkmm/colorselection.h>
 #include <gtkmm.h>
-
 #endif // __MGUI__EXTLIBS__H__
 
